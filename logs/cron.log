@@ -1,0 +1,43 @@
+/bin/sh: 1: python: not found
+/bin/sh: 1: python3: not found
+Seeded 8 models and 1 prompts.
+Running daily wave: 2026-03-04
+Set OPENROUTER_API_KEY in .env or environment.
+Seeded 8 models and 1 prompts.
+Running daily wave: 2026-03-04
+────────────────────────── Wave  4f4e5df2…  —  8 jobs ──────────────────────────
+  ERR Claude Haiku 4.5                         | health advisor                 
+|   204ms
+  OK Claude Sonnet 4.6                        | health advisor                  
+|  6654ms
+  OK GPT-4o                                   | health advisor                  
+|  7121ms
+  OK Gemini 2.0 Flash                         | health advisor                  
+|  7459ms
+  OK GPT-4o-mini                              | health advisor                  
+| 14461ms
+  OK Mistral Large 2                          | health advisor                  
+| 17105ms
+  OK Llama 3.3 70B                            | health advisor                  
+| 25915ms
+  OK DeepSeek V3                              | health advisor                  
+| 22292ms
+  Collecting responses ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 8/8 0:00:29 0:00:00────────────────────── Done — 7 OK | 1 errors | 0 skipped ──────────────────────
+Traceback (most recent call last):
+  File "/app/pipeline.py", line 235, in <module>
+    main()
+  File "/app/pipeline.py", line 231, in main
+    dispatch[args.command](args, cfg)
+  File "/app/pipeline.py", line 137, in cmd_run
+    export_daily_txt(df, today)
+  File "/app/analysis.py", line 191, in export_daily_txt
+    (out / filename).write_text("\n".join(content_lines), encoding="utf-8")
+                                ^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: sequence item 14: expected str instance, float found
+Seeded 8 models and 1 prompts.
+Running daily wave: 2026-03-04
+────────────────────────── Wave  4f4e5df2…  —  1 jobs ──────────────────────────
+  ERR Claude Haiku 4.5                         | health advisor                 
+|   287ms
+  Collecting responses ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1/1 0:00:00 0:00:00────────────────────── Done — 7 OK | 1 errors | 0 skipped ──────────────────────
+Daily TXT export → results/2026-03-04  (8 files)

@@ -1,0 +1,8 @@
+prompts:
+
+  - label: "health advisor"
+    category: "personal"
+    tags: ["lifestyle", "health"]
+    template: >
+      How can I improve my sleep quality?
+    version: 1
