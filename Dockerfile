@@ -18,6 +18,6 @@ COPY config.yaml prompts.yaml ./
 RUN mkdir -p /app/results /app/logs
 
 # Add crontab — runs daily at 09:00 UTC, logs to /app/logs/cron.log
-RUN echo "46 10 * * * cd /app && /usr/local/bin/python3 pipeline.py run >> /app/logs/cron.log 2>&1" | crontab -
+RUN echo "30 9 * * * cd /app && /usr/local/bin/python3 pipeline.py run >> /app/logs/cron.log 2>&1" | crontab -
 
 CMD ["sh", "-c", "printenv > /etc/environment && cron -f"]
