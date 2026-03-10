@@ -145,8 +145,22 @@ class OpenRouterClient:
             choice = data["choices"][0]
             usage = data.get("usage", {})
 
+            # Extract web search citations (OpenRouter :online feature)
+            text = choice["message"]["content"]
+            annotations = choice["message"].get("annotations") or []
+            sources = []
+            for ann in annotations:
+                if ann.get("type") == "url_citation":
+                    uc = ann.get("url_citation", {})
+                    url = uc.get("url")
+                    title = uc.get("title", "")
+                    if url:
+                        sources.append(f"[{title}]({url})" if title else url)
+            if sources:
+                text = text + "\n\n**Sources:**\n" + "\n".join(f"- {s}" for s in sources)
+
             return LLMResponse(
-                response_text=choice["message"]["content"],
+                response_text=text,
                 input_tokens=usage.get("prompt_tokens"),
                 output_tokens=usage.get("completion_tokens"),
                 finish_reason=choice.get("finish_reason"),

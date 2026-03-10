@@ -72,6 +72,18 @@ def load_prompts_yaml(path: str = "prompts.yaml") -> list[dict]:
 
 def seed_db(conn, cfg: dict) -> None:
     models = cfg.get("models", [])
+
+    # Deactivate any models not in the current config
+    active_ids = {m["model_id"] for m in models}
+    if active_ids:
+        conn.execute(
+            "UPDATE model_configs SET active = 0 WHERE model_id NOT IN ({})".format(
+                ",".join("?" * len(active_ids))
+            ),
+            list(active_ids),
+        )
+        conn.commit()
+
     for m in models:
         upsert_model(
             conn,

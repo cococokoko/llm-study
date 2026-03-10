@@ -10,54 +10,32 @@ study:
   http_referer: "https://github.com/longitudinal-llm-study"
   site_name: "LLM Longitudinal Study"
 
-# OpenRouter model catalogue.
+# OpenRouter model catalogue — freemium tier only.
 # model_id must match the OpenRouter model string exactly.
-# parameters override defaults per-model.
+# To find the latest available IDs: https://openrouter.ai/models
+#
+# Freemium mapping (":online" suffix enables OpenRouter web search grounding):
+#   ChatGPT  → chatgpt-4o-latest   tracks the live ChatGPT web UI version
+#   Claude   → claude-3-5-sonnet-20241022  latest Claude on the free claude.ai tier
+#   Gemini   → gemini-2.0-flash-001        free-tier Gemini (confirmed working)
+#
+# Web search: OpenRouter injects a search step when the model decides it needs
+# current information. Source URLs are appended to the response as a Sources footer.
 models:
-  - model_id: "openai/gpt-4o"
-    display_name: "GPT-4o"
+  - model_id: "openai/chatgpt-4o-latest:online"
+    display_name: "ChatGPT-4o"
     parameters:
       temperature: 0.7
       max_tokens: 1024
 
-  - model_id: "openai/gpt-4o-mini"
-    display_name: "GPT-4o-mini"
+  - model_id: "anthropic/claude-3-5-sonnet-20241022:online"
+    display_name: "Claude 3.5 Sonnet"
     parameters:
       temperature: 0.7
       max_tokens: 1024
 
-  - model_id: "anthropic/claude-sonnet-4-6"
-    display_name: "Claude Sonnet 4.6"
-    parameters:
-      temperature: 0.7
-      max_tokens: 1024
-
-  - model_id: "anthropic/claude-haiku-4-5-20251001"
-    display_name: "Claude Haiku 4.5"
-    parameters:
-      temperature: 0.7
-      max_tokens: 1024
-
-  - model_id: "google/gemini-2.0-flash-001"
+  - model_id: "google/gemini-2.0-flash-001:online"
     display_name: "Gemini 2.0 Flash"
-    parameters:
-      temperature: 0.7
-      max_tokens: 1024
-
-  - model_id: "meta-llama/llama-3.3-70b-instruct"
-    display_name: "Llama 3.3 70B"
-    parameters:
-      temperature: 0.7
-      max_tokens: 1024
-
-  - model_id: "mistralai/mistral-large-2411"
-    display_name: "Mistral Large 2"
-    parameters:
-      temperature: 0.7
-      max_tokens: 1024
-
-  - model_id: "deepseek/deepseek-chat-v3-0324"
-    display_name: "DeepSeek V3"
     parameters:
       temperature: 0.7
       max_tokens: 1024
